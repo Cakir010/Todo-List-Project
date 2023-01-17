@@ -16,7 +16,7 @@ function eventListeners() {
 
 function addTodo(e) {
   const newTodo = todoInput.value.trim();
-
+//*herhangi bir todo girmedigimiz zaman butona basınca listeye boş atmasın diye bir if açıp newtodo boşsa bir alert devreye girsin istiyoruz.girilmişsse başarıyla olusturuldu yazacak.
   if (newTodo === "") {
     showAlert("dikkat", "Lütfen bir todo giriniz...");
   } else {
@@ -27,13 +27,14 @@ function addTodo(e) {
 
   e.preventDefault();
 }
-// =========================================================
+// *==============LOKAL STORAGE===========================================
 // function getTodoFromStorage() {
 //   Storageden bütün todoları alacak
 //   let todos;
 //   if (localStorage.getItem("todos") === null) {
 //     todos = [];
 //   } else {
+  //*Parse Stringi Arraya Çevirir
 //     todos = JSON.parse(localStorage.getItem("todos"));
 //   }
 //   return todos;
@@ -41,15 +42,17 @@ function addTodo(e) {
 // function addTodoToStorage(newTodo) {
 //   let todos = getTodosFromStorage();
 //   todos.push(newTodo);
+//*Stringify Arrayi Stringe çevirir.
 //   localStorage.setItem("todos", JSON.stringify(todos));
 // }
-// ===================================================
+//* == Yukarıdaki liste boş atamasın diye yazdıgımız koşulu oluşturuyoruz.
 function showAlert(type, message) {
   const alert = document.createElement("div");
   alert.className = `alert ${type}`;
   alert.textContent = message;
+  //* textcontent ile oluşturdugumuz alerti appendchild ile yukarıda olusturdugumuz firsttodobody nin çocugu şeklinde olusturduk.
   firstTodoBody.appendChild(alert);
-
+//*yazdıgımız alert hep orda kalmasın 1-2 sn sonra kaybolsun diye settimeout kullandık.
   setTimeout(function () {
     alert.remove();
   }, 2000);
